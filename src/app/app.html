@@ -1,1 +1,19 @@
-<p>jaja soso {{'app.creator' | translate}}</p>
+<div>jaja soso {{'app.creator' | translate}}</div>
+<div>
+  <acp-language-tagged-text [multiLine]="false"
+                            [(textList)]="data1"
+                            placeholderKey="header.name.placeholder"
+                            labelKey="header.name.label">
+  </acp-language-tagged-text>
+</div>
+<div>
+  <acp-language-tagged-text [multiLine]="true"
+                            [(textList)]="data2"
+                            placeholderKey="header.description.placeholder"
+                            labelKey="header.description.label">
+  </acp-language-tagged-text>
+</div>
+<div>
+  <p>data1: {{data1()[0].value}}</p>
+  <p>data2: {{data2()[0].value}}</p>
+</div>

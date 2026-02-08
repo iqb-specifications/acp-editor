@@ -2,5 +2,15 @@
   "app": {
     "name": "ACP-Editor",
     "creator": "IQB"
+  },
+  "header": {
+    "name": {
+      "placeholder": "V3-de.2027",
+      "label": "Name"
+    },
+    "description": {
+      "placeholder": "",
+      "label": "Beschreibung"
+    }
   }
 }
