@@ -1,4 +1,4 @@
-import {Component, effect, input, linkedSignal, model, output, signal} from '@angular/core';
+import {Component, effect, input, linkedSignal, model} from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
 import {MatFormField, MatInput, MatLabel} from '@angular/material/input';
 import {form, FormField} from '@angular/forms/signals';
@@ -41,8 +41,6 @@ export class LanguageTaggedTextComponent {
   multiLine = input.required<boolean>();
   placeholderKey = input<string>('');
   labelKey = input<string>('');
-  textChanged = output<LanguageTaggedText>();
-
 
   private readonly formModel = linkedSignal({
     source: this.textList,
