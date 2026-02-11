@@ -1,1 +1,15 @@
-<p>scale.component works!</p>
+    <form class="scale-form">
+      <div class="scale-first-line">
+        <mat-form-field class="ltt-full-width">
+          <mat-label>{{'scale.id.label' | translate}}</mat-label>
+          <input matInput [formField]="inputForm.text">
+        </mat-form-field>
+        <acp-language-tagged-text multiLine="false"></acp-language-tagged-text>
+      </div>
+      @if (multiLine()) {
+      } @else {
+        <mat-form-field class="ltt-full-width">
+          <mat-label>{{labelKey() | translate}}</mat-label>
+        </mat-form-field>
+      }
+    </form>
