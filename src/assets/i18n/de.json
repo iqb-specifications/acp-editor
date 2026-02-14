@@ -12,5 +12,16 @@
       "placeholder": "",
       "label": "Beschreibung"
     }
+  },
+  "scale": {
+    "id": "ID",
+    "name": "Name",
+    "description": "Beschreibung",
+    "scale-type": {
+      "label": "Skalentyp",
+      "BASE": "Basis",
+      "DERIVED": "Abgeleitet",
+      "AGGREGATED": "Aggregiert"
+    }
   }
 }

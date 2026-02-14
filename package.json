@@ -41,47 +41,11 @@
     "@angular/cli": "^21.1.3",
     "@angular/compiler-cli": "^21.1.0",
     "@angular/material": "^21.1.3",
-    "@iqb/eslint-config": "^2.1.1",
     "eslint": "9.26.0",
     "eslint-plugin-html": "^8.1.1",
     "eslint-plugin-import": "^2.29.1",
     "jsdom": "^27.1.0",
     "typescript": "~5.9.2",
     "vitest": "^4.0.8"
-  },
-  "eslintConfig": {
-    "extends": "@iqb/eslint-config",
-    "rules": {
-      "no-await-in-loop": "off",
-      "no-spaced-func": "off",
-      "no-restricted-syntax": "off",
-      "class-methods-use-this": "off",
-      "no-continue": "off",
-      "max-len": "off"
-    },
-    "parserOptions": {
-      "project": "./tsconfig.base.json"
-    },
-    "overrides": [
-      {
-        "files": [
-          "e2e-tests/**/*.ts"
-        ],
-        "rules": {
-          "@typescript-eslint/no-unused-expressions": [
-            "error",
-            {
-              "allowTaggedTemplates": true
-            }
-          ],
-          "newline-per-chained-call": [
-            "off"
-          ]
-        },
-        "plugins": [
-          "html"
-        ]
-      }
-    ]
   }
 }

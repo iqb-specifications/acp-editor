@@ -1,15 +1,24 @@
     <form class="scale-form">
-      <div class="scale-first-line">
-        <mat-form-field class="ltt-full-width">
-          <mat-label>{{'scale.id.label' | translate}}</mat-label>
-          <input matInput [formField]="inputForm.text">
+      <div class="scale-row">
+        <mat-form-field [style.flex]="'0 0 200px'">
+          <mat-label>{{'scale.id' | translate}}</mat-label>
+          <input matInput [formField]="inputForm.id">
         </mat-form-field>
-        <acp-language-tagged-text multiLine="false"></acp-language-tagged-text>
+        <acp-language-tagged-text [style.flex]="'auto'"
+          [formField]="inputForm.name"
+          [labelKey]="'scale.name' | translate"
+          [multiLine]="false"></acp-language-tagged-text>
       </div>
-      @if (multiLine()) {
-      } @else {
-        <mat-form-field class="ltt-full-width">
-          <mat-label>{{labelKey() | translate}}</mat-label>
-        </mat-form-field>
-      }
+      <acp-language-tagged-text
+        [formField]="inputForm.description"
+        [labelKey]="'scale.description' | translate"
+        [multiLine]="true"></acp-language-tagged-text>
+      <div class="scale-row">
+        <mat-label>{{'scale.scale-type.label' | translate}}</mat-label>
+        <mat-button-toggle-group [formField]="inputForm.scaleType">
+          @for (sType of LocaleScaleTypesString; track sType) {
+            <mat-button-toggle [value]="sType">{{('scale.scale-type.' + sType) | translate}}</mat-button-toggle>
+          }
+        </mat-button-toggle-group>
+      </div>
     </form>

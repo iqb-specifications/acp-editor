@@ -3,6 +3,7 @@ import {MatFormField, MatInput, MatLabel} from '@angular/material/input';
 import {form, FormField} from '@angular/forms/signals';
 import {TranslatePipe} from '@ngx-translate/core';
 import {LanguageTaggedTextComponent} from '../language-tagged-text/language-tagged-text.component';
+import {MatButtonToggle, MatButtonToggleGroup} from '@angular/material/button-toggle';
 
 interface ScaleFormModel {
   "id": string,
@@ -44,22 +45,12 @@ interface ScaleFormModel {
     FormField,
     TranslatePipe,
     MatInput,
-    LanguageTaggedTextComponent
+    LanguageTaggedTextComponent,
+    MatButtonToggleGroup,
+    MatButtonToggle
   ],
   templateUrl: './scale.component.html',
-  styles: [
-  `
-      .scale-form {
-        min-width: 150px;
-        max-width: 500px;
-        width: 100%;
-      }
-      .scale-first-line {
-        display: flex;
-        flex-direction: row;
-      }
-   `
-  ]
+  styleUrl: 'scale.component.scss'
 })
 
 export class ScaleComponent {
@@ -125,9 +116,10 @@ export class ScaleComponent {
 
   constructor() {
     effect(() => {
+      console.log(this.inputForm().valid());
       if (this.inputForm().valid()) {
-        const scaleType = this.inputForm.id().value();
-        if (scaleType in ScaleTypesString) {
+        const scaleType = this.inputForm.scaleType().value();
+        if (this.LocaleScaleTypesString.includes(scaleType)) {
           let typeParameters: ScaleParametersBase | ScaleParametersDerived | ScaleParametersAggregated;
           if (scaleType === "BASE") {
             typeParameters = <ScaleParametersBase>{
@@ -160,4 +152,6 @@ export class ScaleComponent {
       }
     });
   }
+
+  protected readonly LocaleScaleTypesString = ["BASE", "DERIVED", "AGGREGATED"];
 }

@@ -1,7 +1,7 @@
 import {Component, effect, input, linkedSignal, model} from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
 import {MatFormField, MatInput, MatLabel} from '@angular/material/input';
-import {form, FormField} from '@angular/forms/signals';
+import {form, FormField, FormValueControl} from '@angular/forms/signals';
 
 @Component({
   selector: 'acp-language-tagged-text',
@@ -36,14 +36,19 @@ import {form, FormField} from '@angular/forms/signals';
     `
     ],
 })
-export class LanguageTaggedTextComponent {
-  readonly textList = model.required<LanguageTaggedText>();
+export class LanguageTaggedTextComponent implements FormValueControl<LanguageTaggedText>{
+  value = model<LanguageTaggedText>([
+    {
+      lang: "de",
+      value: ""
+    }
+  ]);
   multiLine = input.required<boolean>();
   placeholderKey = input<string>('');
   labelKey = input<string>('');
 
   private readonly formModel = linkedSignal({
-    source: this.textList,
+    source: this.value,
     computation: (domainModel) => domainModel && domainModel[0] ?
       {
         "text": domainModel[0].value
@@ -56,7 +61,7 @@ export class LanguageTaggedTextComponent {
   constructor() {
     effect(() => {
       if (this.inputForm().valid()) {
-        this.textList.set(
+        this.value.set(
           [
             {
               lang: "de",

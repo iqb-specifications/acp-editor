@@ -1,14 +1,14 @@
 <div>jaja soso {{'app.creator' | translate}}</div>
 <div>
   <acp-language-tagged-text [multiLine]="false"
-                            [(textList)]="data1"
+                            [(value)]="data1"
                             placeholderKey="header.name.placeholder"
                             labelKey="header.name.label">
   </acp-language-tagged-text>
 </div>
 <div>
   <acp-language-tagged-text [multiLine]="true"
-                            [(textList)]="data2"
+                            [(value)]="data2"
                             placeholderKey="header.description.placeholder"
                             labelKey="header.description.label">
   </acp-language-tagged-text>
@@ -16,4 +16,7 @@
 <div>
   <p>data1: {{data1()[0].value}}</p>
   <p>data2: {{data2()[0].value}}</p>
+  <p>data3: {{data3().id}}</p>
 </div>
+<acp-scale [(scaleData)]="data3"></acp-scale>
+<button (click)="printScaleData()">print</button>
