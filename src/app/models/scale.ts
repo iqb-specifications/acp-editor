@@ -1,6 +1,3 @@
-const ItemParameterKeys = ["LOGIT_FULL_CREDIT", "LOGIT_PARTIAL_CREDIT_1", "LOGIT_PARTIAL_CREDIT_2",
-  "LOGIT_PARTIAL_CREDIT_3", "WEIGHT"];
-
 interface ItemParameter {
   key: "LOGIT_FULL_CREDIT" | "LOGIT_PARTIAL_CREDIT_1" | "LOGIT_PARTIAL_CREDIT_2" | "LOGIT_PARTIAL_CREDIT_3" | "WEIGHT";
   value: string
@@ -10,8 +7,6 @@ interface ItemInBaseScale {
   id: string;
   parameters: ItemParameter[];
 }
-
-const ScaleBaseMethods = ["SCORE_SUM", "SCORE_RATIO", "SCORE_MEAN", "SCORE_MEDIAN", "WLE", "CODE_COUNT"];
 
 interface ScaleParametersBase {
   method: "SCORE_SUM" | "SCORE_RATIO" | "SCORE_MEAN" | "SCORE_MEDIAN" | "WLE" | "CODE_COUNT";
@@ -27,13 +22,12 @@ interface NewValueInDerivedScale {
   publicVocabularyEntry: string
 }
 
-const ScaleDerivedMethods = ["EQUALS", "LESS_THAN", "MORE_THAN", "MAX", "MIN"];
-
 interface MappingInDerivedScale {
   method: "EQUALS" | "LESS_THAN" | "MORE_THAN" | "MAX" | "MIN";
   methodParameters: string[];
   newValue: NewValueInDerivedScale[]
 }
+
 interface ScaleParametersDerived {
   source: string;
   publicVocabularyUrl: string;
@@ -46,14 +40,11 @@ interface SourceInAggregatedScale {
   weight: number;
 }
 
-const ScaleAggregatedMethods = ["SUM", "MEAN"];
-
 interface ScaleParametersAggregated {
   method: "SUM" | "MEAN";
   sources: SourceInAggregatedScale[];
 }
 
-const ScaleTypesString = ["BASE", "DERIVED", "AGGREGATED"];
 type ScaleType = "BASE" | "DERIVED" | "AGGREGATED";
 
 interface Scale {

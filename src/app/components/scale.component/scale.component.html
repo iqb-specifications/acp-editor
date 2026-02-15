@@ -13,12 +13,30 @@
         [formField]="inputForm.description"
         [labelKey]="'scale.description' | translate"
         [multiLine]="true"></acp-language-tagged-text>
-      <div class="scale-row">
-        <mat-label>{{'scale.scale-type.label' | translate}}</mat-label>
+      <div class="scale-row" [style.justify-content]="'space-around'">
+        <mat-label>{{'scale.scale-type-label' | translate}}</mat-label>
         <mat-button-toggle-group [formField]="inputForm.scaleType">
-          @for (sType of LocaleScaleTypesString; track sType) {
-            <mat-button-toggle [value]="sType">{{('scale.scale-type.' + sType) | translate}}</mat-button-toggle>
+          @for (sType of ScaleConstTypesString; track sType) {
+            <mat-button-toggle [value]="sType">{{`scale.${sType}.label` | translate}}</mat-button-toggle>
           }
         </mat-button-toggle-group>
       </div>
+      @if (inputForm.scaleType().value() === "BASE") {
+        <div class="scale-type-parameters">
+          <mat-form-field>
+            <mat-label>{{'scale.BASE.method.label' | translate}}</mat-label>
+            <mat-select [formField]="inputForm.typeParametersBase.method" #baseMethod>
+              @for (bMethod of ScaleConstBaseMethods; track bMethod) {
+                <mat-option [value]="bMethod">{{`scale.BASE.method.${bMethod}` | translate }}</mat-option>
+              }
+            </mat-select>
+          </mat-form-field>
+          <acp-string-array [formField]="inputForm.typeParametersBase.methodParameters" [arrayLength]="getArrayLength(baseMethod.value)"
+                            [labelKeyPrefix]="'yy'" [emptyKey]="'xxx'"></acp-string-array>
+        </div>
+      } @else if (inputForm.scaleType().value() === "DERIVED") {
+        <div class="scale-type-parameters">DERIVED</div>
+      } @else if (inputForm.scaleType().value() === "AGGREGATED") {
+        <div class="scale-type-parameters">AGGREGATED</div>
+      }
     </form>

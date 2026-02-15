@@ -1,7 +1,7 @@
 import { Component, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import {TranslatePipe} from '@ngx-translate/core';
-import {LanguageTaggedTextComponent} from './components/language-tagged-text/language-tagged-text.component';
+import {LanguageTaggedTextComponent} from './components/multi-use/language-tagged-text.component';
 import {ScaleComponent} from './components/scale.component/scale.component';
 
 @Component({
@@ -30,8 +30,8 @@ export class App {
     description: [],
     scaleType: "BASE",
     typeParameters: {
-      method: "SCORE_SUM",
-      methodParameters: [],
+      method: "SCORE_RATIO",
+      methodParameters: ['aa', 'bb'],
       items: []
     }
   });

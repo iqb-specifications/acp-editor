@@ -2,8 +2,11 @@ import {Component, effect, linkedSignal, model} from '@angular/core';
 import {MatFormField, MatInput, MatLabel} from '@angular/material/input';
 import {form, FormField} from '@angular/forms/signals';
 import {TranslatePipe} from '@ngx-translate/core';
-import {LanguageTaggedTextComponent} from '../language-tagged-text/language-tagged-text.component';
+import {LanguageTaggedTextComponent} from '../multi-use/language-tagged-text.component';
 import {MatButtonToggle, MatButtonToggleGroup} from '@angular/material/button-toggle';
+import {MatOption, MatSelect} from '@angular/material/select';
+import {ScaleConstants} from '../../models/scale.contants';
+import {StringArrayComponent} from '../multi-use/string-array.component';
 
 interface ScaleFormModel {
   "id": string,
@@ -47,7 +50,10 @@ interface ScaleFormModel {
     MatInput,
     LanguageTaggedTextComponent,
     MatButtonToggleGroup,
-    MatButtonToggle
+    MatButtonToggle,
+    MatSelect,
+    MatOption,
+    StringArrayComponent
   ],
   templateUrl: './scale.component.html',
   styleUrl: 'scale.component.scss'
@@ -112,14 +118,21 @@ export class ScaleComponent {
       return functionReturn;
     }
   });
-  inputForm = form(this.formModel)
+  inputForm = form(this.formModel);
+
+  get ScaleConstTypesString() {
+    return ScaleConstants.TypesString;
+  };
+
+  get ScaleConstBaseMethods() {
+    return ScaleConstants.BaseMethods;
+  };
 
   constructor() {
     effect(() => {
-      console.log(this.inputForm().valid());
       if (this.inputForm().valid()) {
         const scaleType = this.inputForm.scaleType().value();
-        if (this.LocaleScaleTypesString.includes(scaleType)) {
+        if (this.ScaleConstTypesString.includes(scaleType)) {
           let typeParameters: ScaleParametersBase | ScaleParametersDerived | ScaleParametersAggregated;
           if (scaleType === "BASE") {
             typeParameters = <ScaleParametersBase>{
@@ -153,5 +166,8 @@ export class ScaleComponent {
     });
   }
 
-  protected readonly LocaleScaleTypesString = ["BASE", "DERIVED", "AGGREGATED"];
+  protected getArrayLength(method: string) {
+    if (method) return ScaleConstants.BaseMethodParameterNumber[method] || 0;
+    return 0;
+  }
 }

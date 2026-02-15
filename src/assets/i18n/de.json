@@ -17,11 +17,24 @@
     "id": "ID",
     "name": "Name",
     "description": "Beschreibung",
-    "scale-type": {
-      "label": "Skalentyp",
-      "BASE": "Basis",
-      "DERIVED": "Abgeleitet",
-      "AGGREGATED": "Aggregiert"
+    "scale-type-label": "Skalentyp",
+    "BASE": {
+      "label": "Basis",
+      "method": {
+        "label": "Berechnungsmethode",
+        "SCORE_SUM": "Summe Score",
+        "SCORE_RATIO": "Score Prozent",
+        "SCORE_MEAN": "Score Mittelwert",
+        "SCORE_MEDIAN": "Score Median",
+        "WLE": "WLE",
+        "CODE_COUNT": "Zähle Code"
+      }
+    },
+    "DERIVED": {
+      "label": "Abgeleitet"
+    },
+    "AGGREGATED": {
+      "label": "Aggregiert"
     }
   }
 }
