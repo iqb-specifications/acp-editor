@@ -56,8 +56,10 @@ export class StringArrayComponent implements FormValueControl<string[]>{
   constructor() {
     effect(() => {
       if (this.inputForm().valid()) {
-        const returnArray: string[] = this.inputForm.items().value().map(t => t.text);
-        // this.value.set(returnArray);
+        // todo:
+        const oldValue = JSON.stringify(this.value());
+        const newValue = this.inputForm.items().value().map(t => t.text);
+        if (JSON.stringify(newValue) !== oldValue) this.value.set(newValue);
       }
     });
   }

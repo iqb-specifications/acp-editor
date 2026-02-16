@@ -3,10 +3,11 @@ import { RouterOutlet } from '@angular/router';
 import {TranslatePipe} from '@ngx-translate/core';
 import {LanguageTaggedTextComponent} from './components/multi-use/language-tagged-text.component';
 import {ScaleComponent} from './components/scale.component/scale.component';
+import {StringArrayComponent} from './components/multi-use/string-array.component';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, TranslatePipe, LanguageTaggedTextComponent, ScaleComponent],
+  imports: [RouterOutlet, TranslatePipe, LanguageTaggedTextComponent, ScaleComponent, StringArrayComponent],
   templateUrl: './app.html',
   styleUrl: './app.scss'
 })
@@ -35,6 +36,9 @@ export class App {
       items: []
     }
   });
+  data4 = signal<string[]>([
+    'aa', 'bb'
+  ])
 
   protected printScaleData() {
     console.debug(this.data3());
